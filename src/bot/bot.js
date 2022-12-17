@@ -7,13 +7,9 @@ import { conversations } from '@grammyjs/conversations';
 
 import { config } from './../config.js';
 
-import { composer as menuFeature } from './features/menu.feature.js';
-import { composer as lessonsFeature } from './features/lessons.feature.js';
-import { composer as scheduleFeature } from './features/schedule.feature.js';
-import { composer as gettersFeature } from './features/getters.feature.js';
-import { composer as settersFeature } from './features/setters.feature.js';
-
-import { composer as testFeature } from './features/set-lessons.js';
+import { composer as lessonsFeature } from './features/set-lessons.feature.js';
+import { composer as scheduleFeature } from './features/set-schedule.feature.js';
+import { composer as menuFeature } from './features/menuHandler.feature.js';
 
 import { handleError } from './helpers/handleError.js';
 
@@ -36,11 +32,9 @@ bot.use(conversations());
 /********************************
 *            Handlers           *
 ********************************/
-//bot.use(menuFeature);
-//bot.use(scheduleFeature);
-//bot.use(lessonsFeature);
-//bot.use(gettersFeature);
-//bot.use(settersFeature);
+bot.use(menuFeature);
+bot.use(scheduleFeature);
+bot.use(lessonsFeature);
 
 if (config.isDev) {
 	bot.catch(handleError);
