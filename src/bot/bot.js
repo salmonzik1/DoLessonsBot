@@ -12,6 +12,9 @@ import { composer as lessonsFeature } from './features/lessons.feature.js';
 import { composer as scheduleFeature } from './features/schedule.feature.js';
 import { composer as gettersFeature } from './features/getters.feature.js';
 import { composer as settersFeature } from './features/setters.feature.js';
+
+import { composer as testFeature } from './features/set-lessons.js';
+
 import { handleError } from './helpers/handleError.js';
 
 export const bot = new Bot(config.BOT_TOKEN);
@@ -33,11 +36,11 @@ bot.use(conversations());
 /********************************
 *            Handlers           *
 ********************************/
-bot.use(menuFeature);
-bot.use(scheduleFeature);
-bot.use(lessonsFeature);
-bot.use(gettersFeature);
-bot.use(settersFeature);
+//bot.use(menuFeature);
+//bot.use(scheduleFeature);
+//bot.use(lessonsFeature);
+//bot.use(gettersFeature);
+//bot.use(settersFeature);
 
 if (config.isDev) {
 	bot.catch(handleError);
