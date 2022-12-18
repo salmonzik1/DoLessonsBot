@@ -9,3 +9,5 @@ for (let i = 0; i < lessonsList.length; i++) {
 
 	if ((i+1) % 3 === 0) keyboard.row();
 }
+
+keyboard.row().text('↪️ Назад', 'profile-back');

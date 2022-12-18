@@ -11,8 +11,14 @@ export const composer = new Composer();
 
 const feature = composer.chatType('private');
 
-feature.hears(/📔 Уроки|\/setlessons/, async (ctx) => {
+feature.hears(/📔 Уроки|\/setlessons/i, async (ctx) => {
 	ctx.reply('[📓] Выберите урок для которого хотите указать Д/3.', {
+		reply_markup: setLessonsKeyboard,
+	});
+});
+
+feature.callbackQuery(/setlessons-call/i, async (ctx) => {
+	await ctx.editMessageText('[📓] Выберите урок для которого хотите указать Д/3.', {
 		reply_markup: setLessonsKeyboard,
 	});
 });

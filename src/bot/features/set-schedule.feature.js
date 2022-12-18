@@ -11,8 +11,14 @@ export const composer = new Composer();
 
 const feature = composer.chatType('private');
 
-feature.hears(/📝 Расписание|\/setschedule/, async (ctx) => {
+feature.hears(/📝 Расписание|\/setschedule/i, async (ctx) => {
 	ctx.reply('[📓] Выберите день для которого хотите указать расписание.', {
+		reply_markup: setScheduleKeyboard,
+	});
+});
+
+feature.callbackQuery(/setschedule-call/i, async (ctx) => {
+	await ctx.editMessageText('[📓] Выберите день для которого хотите указать расписание.', {
 		reply_markup: setScheduleKeyboard,
 	});
 });
