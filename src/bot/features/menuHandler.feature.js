@@ -9,7 +9,7 @@ export const composer = new Composer();
 const feature = composer.chatType('private');
 
 feature.hears(/🎮 Меню|\/menu|\/start/, async ctx => {
-	await ctx.reply('[🎨] Выберите команду из меню.', { reply_markup: menuKeyboard })
+	await ctx.reply('[🎨] Выберите команду из меню.', { reply_markup: menuKeyboard });
 });
 
 function tableSchedule(schedules) {
@@ -32,13 +32,13 @@ function tableSchedule(schedules) {
 }
 
 feature.hears(/📚 Всё расписание|\/getschedule/, async ctx => {
-	const schedules = await (await Users.findOne({ where: { userId: ctx.from.id } })).getSchedules();
+	const schedules = await (await Users.findUser(ctx.from.id)).getSchedules();
 
 	ctx.reply(tableSchedule(schedules));
 });
 
 feature.hears(/📁 Д\/З|\/getlessons/, async ctx => {
-	const lessons = await (await Users.findOne({ where: { userId: ctx.from.id } })).getLessons();
-	const text = lessons.map(el => `${el.lessonId[0].toUpperCase()+el.lessonId.slice(1)}: ${el.value}`).join('\n');
+	const lessons = await (await Users.findUser(ctx.from.id)).getLessons();
+	const text = lessons.map(el => `${el.lessonId[0].toUpperCased()+el.lessonId.slice(1)}: ${el.value}`).join('\n');
 	await ctx.reply(`[🧩] Вот ваше Д/З на завтра:\n<code>${text}</code>`);
 });
