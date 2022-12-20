@@ -15,8 +15,6 @@ yarn install
 3. Choose beetwen `development` und `production` in `.env`
 
 4. Run mongodb locally
-<details>
-	<summary>MongoDB</summary>
 	1. Start MongoDB
 	```bash
 	sudo systemctl start mongod
@@ -25,7 +23,6 @@ yarn install
 	```bash
 	sudo systemctl status mongod
 	```
-</details>
 
 5. Run app
 ```bash
@@ -35,9 +32,9 @@ yarn start
 ## Environment variables reference
 | Variable | Desciption |
 | --- | --- |
-| NODE_ENV | Node environment (`development,production`) |
-| LOG_LEVEL | Log level (`trace,debug,info,warn,error,fatal,silent`) |
-| BOT_SERVER_HOST | Server address |
-| BOT_SERVER_POST | Server port |
-| BOT_ALLOWED_UPDATES | List of [update types](https://core.telegram.org/bots/api#update) to receive |
-| BOT_TOKEN | Telegram bot token, get it from [@BotFather](https://t.me/BotFather) |
+| `NODE_ENV` | Node environment (`development,production`) |
+| `LOG_LEVEL` | Log level (`trace,debug,info,warn,error,fatal,silent`) |
+| `BOT_SERVER_HOST` | Server address |
+| `BOT_SERVER_POST` | Server port |
+| `BOT_ALLOWED_UPDATES` | List of [update types](https://core.telegram.org/bots/api#update) to receive |
+| `BOT_TOKEN` | Telegram bot token, get it from [@BotFather](https://t.me/BotFather) |
