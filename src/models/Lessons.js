@@ -1,9 +1,9 @@
-export default function (sequelize, DataTypes) {
-	return sequelize.define('Lessons', {
-		userId: DataTypes.STRING,
-		lessonId: DataTypes.STRING,
-		value: DataTypes.STRING,
-	}, {
-		timestamps:  false,
-	});
-};
+import { Schema, model } from 'mongoose';
+
+const lessonsSchema = new Schema({
+	userId: Number,
+	lessons: Map,
+});
+
+export const Lessons = model('lessons', lessonsSchema);
+	

@@ -5,7 +5,7 @@ import { keyboard as setLessonsKeyboard } from './../keyboards/set-lessons.keybo
 import { keyboard as menuKeyboard } from './../keyboards/menu.keyboard.js';
 import { keyboard as backKeyboard } from './../keyboards/back.keyboard.js';
 
-import { Users } from './../../database.js'
+import { Lessons } from './../../models/Lessons.js'
 
 export const composer = new Composer();
 
@@ -41,7 +41,17 @@ const setLessonsConversation = async (conv, ctx) => {
 	}
 
 	await conv.external(async () => {
-		(await Users.findUser(ctx.from.id)).setLesson(lessonName, msg.text);
+		let schedule = await Lessons.find({ userId: ctx.from.id });
+
+		if (!schedule[0]) {
+			schedule = new Lessons({ userId: ctx.from.id, lessons: new Map() });
+		} else {
+			schedule = schedule[0];
+		}
+
+		schedule.lessons.set(lessonName.toLowerCase(), msg.text);
+
+		schedule.save();
 	});
 
 	return await ctx.reply(

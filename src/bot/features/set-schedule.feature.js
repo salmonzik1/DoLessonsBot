@@ -5,7 +5,7 @@ import { keyboard as setScheduleKeyboard } from './../keyboards/set-schedule.key
 import { keyboard as menuKeyboard } from './../keyboards/menu.keyboard.js';
 import { keyboard as backKeyboard } from './../keyboards/back.keyboard.js';
 
-import { Users } from './../../database.js'
+import { Schedules } from './../../models/Schedules.js'
 
 export const composer = new Composer();
 
@@ -22,6 +22,12 @@ feature.callbackQuery(/setschedule-call/i, async (ctx) => {
 		reply_markup: setScheduleKeyboard,
 	});
 });
+
+function normalizeDay(dayName) {
+	const days = { 'воскресенье': 0, 'понедельник': 1, 'вторник': 2, 'среда': 3, 'четверг': 4, 'пятница': 5, 'суббота': 6 };
+
+	return days[dayName];
+};
 
 const setScheduleConversation = async (conv, ctx) => {
 	const dayName = ctx.match[0].split('-')[1];
@@ -40,8 +46,21 @@ const setScheduleConversation = async (conv, ctx) => {
 		});
 	}
 
-	await conversation.external(async () => {
-		(await Users.findUser(ctx.from.id)).setSchedule(ctx.match[0].toLowerCase(), msg.text.replace(/\n/gi, ';').toLowerCase());
+	await conv.external(async () => {
+		let schedule = await Schedules.find({ userId: ctx.from.id, dayId: normalizeDay(dayName) });
+
+		if (!schedule[0]) {
+			schedule = new Schedules({ userId: ctx.from.id, dayId: normalizeDay(dayName), lessons: [] });
+		} else {
+			schedule = schedule[0];
+			schedule.lessons = [];
+		}
+
+		for (let lesson of msg.text.split('\n')) {
+			schedule.lessons.push(lesson.toLowerCase());
+		}
+
+		await schedule.save();
 	});
 
 	return await ctx.reply(

@@ -2,11 +2,15 @@ import localtunnel from 'localtunnel';
 
 import { bot } from './bot/bot.js';
 import { server } from './server/server.js';
-import {} from './database.js';
+import { runMongo } from './database.js';
 import { config } from './config.js';
 import { logger } from './logger.js';
 
 const main = async () => {
+	await runMongo();
+
+	logger.info('Connected to db!');
+
 	if (!config.isDev) {
 		return server.listen({
 			host: config.BOT_SERVER_HOST,

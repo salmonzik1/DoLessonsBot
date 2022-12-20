@@ -19,9 +19,8 @@
     "fastify": "^4.10.2",
     "grammy": "^1.12.0",
     "localtunnel": "^2.0.2",
+    "mongoose": "^6.8.1",
     "pino": "8.7.0",
-    "pino-pretty": "^9.1.1",
-    "sequelize": "^6.27.0",
-    "sqlite3": "^5.1.4"
+    "pino-pretty": "^9.1.1"
   }
 }

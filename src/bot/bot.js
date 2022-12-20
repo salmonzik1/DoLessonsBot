@@ -12,6 +12,8 @@ import { composer as scheduleFeature } from './features/set-schedule.feature.js'
 import { composer as menuFeature } from './features/menuHandler.feature.js';
 import { composer as profileFeature } from './features/profile.feature.js';
 
+import { Users } from './../models/Users.js';
+
 import { handleError } from './helpers/handleError.js';
 
 export const bot = new Bot(config.BOT_TOKEN);

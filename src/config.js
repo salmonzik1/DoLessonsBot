@@ -13,6 +13,9 @@ export const config = cleanEnv(process.env, {
 	LOG_LEVEL: str({
 		choices: ['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'silent'],
 	}),
+	MONGO_URL: str({
+		default: 'mongodb://127.0.0.01:27017'
+	}),
 	BOT_SERVER_HOST: str({
 		default: '127.0.0.1',
 	}),
