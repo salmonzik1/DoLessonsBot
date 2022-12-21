@@ -5,14 +5,14 @@ import { keyboard as setScheduleKeyboard } from './../keyboards/set-schedule.key
 import { keyboard as menuKeyboard } from './../keyboards/menu.keyboard.js';
 import { keyboard as backKeyboard } from './../keyboards/back.keyboard.js';
 
-import { Schedules } from './../../models/Schedules.js'
+import { Schedules } from './../../db/models/Schedules.js'
 
 export const composer = new Composer();
 
 const feature = composer.chatType('private');
 
 feature.hears(/📝 Расписание|\/setschedule/i, async (ctx) => {
-	ctx.reply('[📓] Выберите день для которого хотите указать расписание.', {
+	await ctx.reply('[📓] Выберите день для которого хотите указать расписание.', {
 		reply_markup: setScheduleKeyboard,
 	});
 });
@@ -47,14 +47,9 @@ const setScheduleConversation = async (conv, ctx) => {
 	}
 
 	await conv.external(async () => {
-		let schedule = await Schedules.find({ userId: ctx.from.id, dayId: normalizeDay(dayName) });
+		let schedule = await Schedules.findOrCreate({ userId: ctx.from.id, dayId: normalizeDay(dayName) });
 
-		if (!schedule[0]) {
-			schedule = new Schedules({ userId: ctx.from.id, dayId: normalizeDay(dayName), lessons: [] });
-		} else {
-			schedule = schedule[0];
-			schedule.lessons = [];
-		}
+		schedule.lessons = [];
 
 		for (let lesson of msg.text.split('\n')) {
 			schedule.lessons.push(lesson.toLowerCase());

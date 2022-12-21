@@ -1,8 +1,11 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from './../mongoose.js';
 
 const lessonsSchema = new Schema({
 	userId: Number,
-	lessons: Map,
+	lessons: {
+		type: Map,
+		default: () => new Map(),
+	}
 });
 
 export const Lessons = model('lessons', lessonsSchema);

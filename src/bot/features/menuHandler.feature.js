@@ -2,14 +2,21 @@ import { Composer } from 'grammy';
 
 import { keyboard as menuKeyboard } from './../keyboards/menu.keyboard.js';
 
-import { Lessons } from './../../models/Lessons.js';
-import { Schedules } from './../../models/Schedules.js';
+import { Lessons } from './../../db/models/Lessons.js';
+import { Schedules } from './../../db/models/Schedules.js';
+import { Users } from './../../db/models/Users.js';
 
 export const composer = new Composer();
 
 const feature = composer.chatType('private');
 
-feature.hears(/🎮 Меню|\/menu|\/start/, async ctx => {
+feature.command('start', async (ctx) => {
+	await Users.findOrCreate({ id: ctx.from.id });
+
+	await ctx.reply('[🎨] Выберите команду из меню.', { reply_markup: menuKeyboard });
+});
+
+feature.hears(/🎮 Меню|\/menu/, async (ctx) => {
 	await ctx.reply('[🎨] Выберите команду из меню.', { reply_markup: menuKeyboard });
 });
 
@@ -20,7 +27,7 @@ function normalizeDay(dayId) {
 };
 
 function tableSchedule(schedules) {
-	const delta = 18; // 
+	const delta = 18;
 	let text = '<code>';
 
 	for (let schedule of schedules) {
@@ -44,25 +51,13 @@ feature.hears(/📚 Всё расписание|\/getschedule/, async ctx => {
 	ctx.reply(tableSchedule(schedules));
 });
 
-feature.hears(/📁 Д\/З|\/getlessons/, async ctx => {
+feature.hears(/📁 Д\/З|\/getlessons/, async (ctx) => {
 	const tomorrowDay = new Date().getDay()+1;
 	const dayId = (tomorrowDay !== 0) && (tomorrowDay !== 6) ? tomorrowDay : 1;
 
-	let schedule = await Schedules.find({ userId: ctx.from.id, dayId: tomorrowDay });
+	let schedule = await Schedules.findOrCreate({ userId: ctx.from.id, dayId: tomorrowDay });
 
-	if (!schedule[0]) {
-		schedule = new Schedules({ userId: ctx.from.id, dayId: tomorrowDay, lessons: [] });
-	} else {
-		schedule = schedule[0];
-	}
-
-	let lessons = await Lessons.find({ userId: ctx.from.id });
-
-	if (!lessons[0]) {
-		lessons = new Lessons({ userId: ctx.from.id, lessons: new Map() });
-	} else {
-		lessons = lessons[0];
-	}
+	let lessons = await Lessons.findOrCreate({ userId: ctx.from.id });
 
 	const tomorrowLessons = schedule.lessons.map(el => {
 		const lesson = lessons.lessons.get(el);

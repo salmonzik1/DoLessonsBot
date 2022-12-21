@@ -8,7 +8,7 @@ export const composer = new Composer();
 const feature = composer.chatType('private');
 
 feature.hears(/👤 Профиль|\/profile/i, async (ctx) => {
-	ctx.reply(`
+	await ctx.reply(`
 		[👤] Профиль пользователя <code>${ctx.from.username || ctx.from.firstName}</code>
 		`, {
 		reply_markup: profileKeyboard,

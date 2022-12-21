@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from './../mongoose.js';
 
 const ScheduleSchema = new Schema({
 	userId: Number,
@@ -8,8 +8,14 @@ const ScheduleSchema = new Schema({
 	 * 2 - Вторник     6 - Суббота
 	 * 3 - Среда       * - *******
 	 */
-	dayId: Number,
-	lessons: [String],
+	dayId: {
+		type: Number,
+		default: () => new Date().getDay(),
+	},
+	lessons: {
+		type: [String],
+		default: [],
+	}
 });
 
 export const Schedules = model('Schedules', ScheduleSchema);	
