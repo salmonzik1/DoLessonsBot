@@ -1,4 +1,4 @@
-import { Schema, model } from './../mongoose.js';
+import { Schema, model } from '#root/db/mongoose.js';
 
 const ScheduleSchema = new Schema({
     userId: Number,

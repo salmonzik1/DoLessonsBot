@@ -1,7 +1,7 @@
 import { createConversation } from '@grammyjs/conversations';
 
-import { keyboard as backKeyboard } from './../../keyboards/back.keyboard.js';
-import { keyboard as menuKeyboard } from './../../keyboards/menu.keyboard.js';
+import { keyboard as backKeyboard } from '#bot/keyboards/back.keyboard.js';
+import { keyboard as menuKeyboard } from '#bot/keyboards/menu.keyboard.js';
 
 import { Lessons } from './../../../db/models/Lessons.js';
 

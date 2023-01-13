@@ -1,7 +1,7 @@
 import { Composer } from 'grammy';
 
-import { keyboard as profileKeyboard } from './../keyboards/profile.keyboard.js';
-import { keyboard as settingsKeyboard } from './../keyboards/settings.keyboard.js';
+import { keyboard as profileKeyboard } from './../../keyboards/profile.keyboard.js';
+import { keyboard as settingsKeyboard } from './../../keyboards/settings.keyboard.js';
 
 export const feature = new Composer().chatType('private');
 

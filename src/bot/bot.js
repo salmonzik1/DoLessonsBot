@@ -4,11 +4,11 @@ import { apiThrottler } from '@grammyjs/transformer-throttler';
 import { hydrateReply, parseMode } from '@grammyjs/parse-mode';
 import { conversations } from '@grammyjs/conversations';
 
-import { config } from './../config.js';
+import { config } from '#root/config.js';
 
-import { features } from './features/features.js';
+import { features } from '#bot/features/features.js';
 
-import { handleError } from './helpers/handle-error.js';
+import { handleError } from '#bot/helpers/handle-error.js';
 
 export const bot = new Bot(config.BOT_TOKEN);
 

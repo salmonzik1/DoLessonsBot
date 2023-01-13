@@ -1,10 +1,10 @@
 import { createConversation } from '@grammyjs/conversations';
 
-import { Schedules } from './../../../db/models/Schedules.js';
-import { dayName2id } from './../../helpers/days-list.js';
+import { Schedules } from '#root/db/models/Schedules.js';
+import { dayName2id } from '#bot/helpers/days-list.js';
 
-import { keyboard as menuKeyboard } from './../../keyboards/menu.keyboard.js';
-import { keyboard as backKeyboard } from './../../keyboards/back.keyboard.js';
+import { keyboard as menuKeyboard } from '#bot/keyboards/menu.keyboard.js';
+import { keyboard as backKeyboard } from '#bot/keyboards/back.keyboard.js';
 
 export let setScheduleConversation = async (conv, ctx) => {
     const dayName = ctx.match[0];

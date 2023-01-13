@@ -1,7 +1,7 @@
 import { Composer } from 'grammy';
 
-import { Schedules } from './../../../db/models/Schedules.js';
-import { daysList, id2dayName } from './../../helpers/days-list.js';
+import { Schedules } from '#root/db/models/Schedules.js';
+import { daysList, id2dayName } from '#bot/helpers/days-list.js';
 
 import { setScheduleKeyboard } from './keyboards.js';
 import { setScheduleConversation } from './conversations.js';

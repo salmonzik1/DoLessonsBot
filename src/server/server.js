@@ -1,10 +1,10 @@
 import fastify from 'fastify';
 import { BotError, webhookCallback } from 'grammy';
 
-import { bot } from './../bot/bot.js';
-import { config } from './../config.js';
-import { logger } from './../logger.js';
-import { handleError } from './../bot/helpers/handle-error.js';
+import { bot } from '#bot/bot.js';
+import { config } from '#root/config.js';
+import { logger } from '#root/logger.js';
+import { handleError } from '#bot/helpers/handle-error.js';
 
 export const server = fastify({
     logger,

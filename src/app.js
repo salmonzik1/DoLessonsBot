@@ -1,10 +1,10 @@
 import localtunnel from 'localtunnel';
 
-import { bot } from './bot/bot.js';
-import { server } from './server/server.js';
-import { runMongo } from './db/runMongo.js';
-import { config } from './config.js';
-import { logger } from './logger.js';
+import { bot } from '#root/bot/bot.js';
+import { server } from '#root/server/server.js';
+import { runMongo } from '#root/db/runMongo.js';
+import { config } from '#root/config.js';
+import { logger } from '#root/logger.js';
 
 const main = async () => {
     await runMongo();

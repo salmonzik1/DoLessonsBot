@@ -1,6 +1,6 @@
 import { Keyboard } from 'grammy';
 
-import { lessonsList } from './../../helpers/lessons-list.js';
+import { lessonsList } from '#bot/helpers/lessons-list.js';
 
 export const lessonsKeyboard = new Keyboard();
 

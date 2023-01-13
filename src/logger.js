@@ -1,7 +1,7 @@
 import pino from 'pino';
 import pretty from 'pino-pretty';
 
-import { config } from './config.js';
+import { config } from '#root/config.js';
 import { Context } from 'grammy';
 
 const options = {

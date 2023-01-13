@@ -1,4 +1,4 @@
-import { logger } from './../../logger.js';
+import { logger } from '#root/logger.js';
 
 export const handleError = async (error) => {
     const { ctx } = error;

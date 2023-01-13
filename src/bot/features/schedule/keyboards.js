@@ -1,6 +1,6 @@
 import { Keyboard } from 'grammy';
 
-import { daysList } from './../../helpers/days-list.js';
+import { daysList } from '#bot/helpers/days-list.js';
 
 export const setScheduleKeyboard = new Keyboard();
 
