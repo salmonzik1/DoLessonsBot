@@ -42,11 +42,14 @@ yarn start
 
 ## Environment variables reference
 
-| Variable              | Desciption                                                                   |
-| --------------------- | ---------------------------------------------------------------------------- |
-| `NODE_ENV`            | Node environment (`development,production`)                                  |
-| `LOG_LEVEL`           | Log level (`trace,debug,info,warn,error,fatal,silent`)                       |
-| `BOT_SERVER_HOST`     | Server address                                                               |
-| `BOT_SERVER_POST`     | Server port                                                                  |
+| Variable       | Desciption                                             |
+| -------------- | ------------------------------------------------------ |
+| `NODE_ENV`     | Node environment (`development,production`)            |
+| `LOG_LEVEL`    | Log level (`trace,debug,info,warn,error,fatal,silent`) |
+| `DATABASE_URL` | MongoDB addres                                         |
+
+|
+| `BOT_SERVER_HOST` | Server address |
+| `BOT_SERVER_POST` | Server port |
 | `BOT_ALLOWED_UPDATES` | List of [update types](https://core.telegram.org/bots/api#update) to receive |
-| `BOT_TOKEN`           | Telegram bot token, get it from [@BotFather](https://t.me/BotFather)         |
+| `BOT_TOKEN` | Telegram bot token, get it from [@BotFather](https://t.me/BotFather) |
