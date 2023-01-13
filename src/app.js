@@ -4,6 +4,7 @@ import { bot } from '#root/bot/bot.js';
 import { server } from '#root/server/server.js';
 import { runMongo } from '#root/db/runMongo.js';
 import { config } from '#root/config.js';
+import { BOT_SERVER_HOST } from '#root/server/host.js';
 import { logger } from '#root/logger.js';
 
 const main = async () => {
@@ -20,15 +21,8 @@ const main = async () => {
             async (err) => {
                 if (err) return logger.error(err);
 
-                const tunnel = await localtunnel({
-                    local_host: config.BOT_SERVER_HOST,
-                    port: config.BOT_SERVER_PORT,
-                });
-
-                logger.info(tunnel.url);
-
                 bot.api
-                    .setWebhook(`${tunnel.url}/${config.BOT_TOKEN}`, {
+                    .setWebhook(`${BOT_SERVER_HOST}/${config.BOT_TOKEN}`, {
                         allowed_updates: config.BOT_ALLOWED_UPDATES,
                     })
                     .catch((err) => logger.error(err));
